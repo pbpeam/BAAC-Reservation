@@ -1,3 +1,4 @@
+import 'package:baac_reservation/screen/homePage.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
@@ -13,9 +14,10 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // padding: EdgeInsets.all(24.0),
 
       appBar: AppBar(
-        backgroundColor: Colors.green,
+
       ),
 
       body: Container(
@@ -29,11 +31,52 @@ class _LoginState extends State<Login> {
             mainAxisAlignment: MainAxisAlignment.center,
 
             children: <Widget>[
-              //  Text('This is Login page'),
-              // Text('Login'),
-              buildTextFieldEmail(),
-              buildTextFieldPassword(),
-              buildSignInButton(),
+
+              Container(
+                width: 325,
+                child: TextField(
+                  obscureText: false,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Email'
+                  ),
+                ),
+              ),
+
+              Container(
+                height: 7,
+              ),
+
+              Container(
+                width: 325,
+                child: TextField(
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Password'
+                  ),
+                ),
+              ),  
+
+              // Container(
+              //   height: 10,
+              // ),            
+              
+              RaisedButton(
+                child: Text('Login'),
+                color: Colors.green,
+
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Home()),
+                  );
+                }
+              ),
+
+              // buildTextFieldEmail(),
+              // buildTextFieldPassword(),
+              // buildSignInButton(),
 
             ],
 
@@ -44,25 +87,6 @@ class _LoginState extends State<Login> {
   }
 }
 
-//sign in button
-Container buildSignInButton(){
-  return Container(
-    constraints: BoxConstraints.expand(height: 50),
-    child: Text("Sign in",
-        textAlign: TextAlign.center,
-        style: TextStyle(fontSize: 18, color: Colors.white)
-        
-    ),
-
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(16), color: Colors.green[200]
-    ),
-
-    margin: EdgeInsets.only(top: 16),
-    padding: EdgeInsets.all(12),
-
-  );
-}
 
 //Email field
 Container buildTextFieldEmail(){
@@ -98,5 +122,25 @@ Container buildTextFieldPassword(){
       decoration: InputDecoration.collapsed(hintText: "Password"),
       style: TextStyle(fontSize: 18)
     )
+  );
+}
+
+//sign in button
+Container buildSignInButton(){
+  return Container(
+    constraints: BoxConstraints.expand(height: 50),
+    child: Text("Sign in",
+        textAlign: TextAlign.center,
+        style: TextStyle(fontSize: 18, color: Colors.white)
+        
+    ),
+
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(16), color: Colors.green[200]
+    ),
+
+    margin: EdgeInsets.only(top: 16),
+    padding: EdgeInsets.all(12),
+
   );
 }
