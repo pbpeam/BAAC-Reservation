@@ -22,9 +22,9 @@ class _CustomButtonState extends State<CustomButton> {
         child: InkWell(
           // splashColor: Colors.lightGreenAccent,
 
-          onTap: (){
-            print('Card tapped');
-          },
+          // onTap: (){
+          //   print('Card tapped');
+          // },
 
           child: Container(
             width: 325,

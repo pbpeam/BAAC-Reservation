@@ -1,5 +1,6 @@
 
-import 'package:baac_reservation/screen/login.dart';
+// import 'package:baac_reservation/screen/login.dart';
+import 'package:baac_reservation/screen/calendarPage.dart';
 import 'package:baac_reservation/widgets/button.dart';
 import 'package:flutter/material.dart';
 
@@ -25,19 +26,51 @@ class _HomeState extends State<Home> {
 
           children: <Widget>[
 
-            CustomButton(
-              title: 'Book a room',
+            //Book a Room
+            new GestureDetector(
+              onTap: (){
+                // print('Next page');
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CalendarPage()),
+                );
+              },
 
-              // new GestureDetector()
+              child: CustomButton(
+                title: 'Book a room',
+              ),
             ),
 
-            CustomButton(
-              title: 'My reservation',
+            new GestureDetector(
+              onTap: (){
+                // print('Next page');
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CalendarPage()),
+                );
+              },
+
+              child: CustomButton(
+                title: 'My reservation',
+              ),              
             ),
 
-            CustomButton(
-              title: 'Sign in meeting'
+            new GestureDetector(
+              onTap: (){
+                // print('Next page');
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CalendarPage()),
+                );
+              },
+
+              child: CustomButton(
+                title: 'Sign in meeting'
+              ),
             ),
+
+
+
             
             //  buildButton(),
           ],
