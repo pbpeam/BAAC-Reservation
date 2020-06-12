@@ -43,11 +43,10 @@ class _HomeState extends State<Home> {
 
             new GestureDetector(
               onTap: (){
-                // print('Next page');
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => CalendarPage()),
-                );
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(builder: (context) => CalendarPage()),
+                // );
               },
 
               child: CustomButton(
@@ -57,11 +56,10 @@ class _HomeState extends State<Home> {
 
             new GestureDetector(
               onTap: (){
-                // print('Next page');
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => CalendarPage()),
-                );
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(builder: (context) => CalendarPage()),
+                // );
               },
 
               child: CustomButton(
