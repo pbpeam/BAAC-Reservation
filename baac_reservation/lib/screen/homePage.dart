@@ -1,7 +1,7 @@
 
 // import 'package:baac_reservation/screen/login.dart';
 import 'package:baac_reservation/screen/calendarPage.dart';
-import 'package:baac_reservation/widgets/button.dart';
+import 'package:baac_reservation/widgets/customButton.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -41,6 +41,7 @@ class _HomeState extends State<Home> {
               ),
             ),
 
+            //My Reservation
             new GestureDetector(
               onTap: (){
                 // Navigator.push(
@@ -54,6 +55,7 @@ class _HomeState extends State<Home> {
               ),              
             ),
 
+            //Sign in meeting
             new GestureDetector(
               onTap: (){
                 // Navigator.push(

@@ -1,6 +1,7 @@
 // import 'package:baac_reservation/widgets/calendar.dart';
+import 'package:baac_reservation/screen/roomCalendar.dart';
 import 'package:baac_reservation/screen/roomList.dart';
-import 'package:baac_reservation/widgets/button.dart';
+import 'package:baac_reservation/widgets/customButton.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -33,8 +34,21 @@ class _CalendarPageState extends State<CalendarPage> {
           mainAxisAlignment:  MainAxisAlignment.center,
 
           children: <Widget>[
-            TableCalendar(calendarController: _calendarController),
+            TableCalendar(
+              calendarStyle: CalendarStyle(
+              ),
+              calendarController: _calendarController,
 
+              //Day Selection
+              onDaySelected: (day, events) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => RoomCalendar()),
+                );
+              },
+            ),
+
+            //View Room Button
             new GestureDetector(
               onTap: (){
                 Navigator.push(context,
@@ -44,7 +58,20 @@ class _CalendarPageState extends State<CalendarPage> {
               child: CustomButton(
                 title: 'View Room',
               ),
-            )
+            ),
+
+            // GestureDetector(
+            //   onTap: (){
+            //     Navigator.push(context,
+            //         MaterialPageRoute(builder: (context) => RoomCalendar()),);
+            //   },
+              
+            //   //Calendar Room
+            //   child: CustomButton(
+            //     title: 'View Calendar Room',
+            //   ),
+            // ),
+
           ],
         ),
       ),

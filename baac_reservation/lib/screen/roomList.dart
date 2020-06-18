@@ -1,3 +1,4 @@
+import 'package:baac_reservation/widgets/customRoom.dart';
 import 'package:flutter/material.dart';
 
 class RoomList extends StatefulWidget {
@@ -10,8 +11,20 @@ class RoomList extends StatefulWidget {
 class _RoomListState extends State<RoomList> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      //  child: child,
+    return Scaffold(
+      appBar: AppBar(
+
+      ),
+
+      body: 
+        ListView.builder(
+        itemCount: 4,
+        itemBuilder: (BuildContext context, int index) {  
+          return CustomRoom();
+        },
+
+      ),
+
     );
   }
 }
