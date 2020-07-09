@@ -1,5 +1,5 @@
-import 'package:baac_reservation/widgets/customRoom.dart';
 import 'package:flutter/material.dart';
+import 'package:baac_reservation/widgets/roomCard.dart';
 
 class RoomList extends StatefulWidget {
   RoomList({Key key}) : super(key: key);
@@ -20,7 +20,7 @@ class _RoomListState extends State<RoomList> {
         ListView.builder(
         itemCount: 4,
         itemBuilder: (BuildContext context, int index) {  
-          return CustomRoom();
+          return RoomCard();
         },
 
       ),

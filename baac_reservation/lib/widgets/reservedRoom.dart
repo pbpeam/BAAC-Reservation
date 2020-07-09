@@ -1,14 +1,14 @@
-import 'package:baac_reservation/widgets/roomStatus.dart';
 import 'package:flutter/material.dart';
+import 'package:baac_reservation/widgets/RoomStatus/reserved.dart';
 
-class CustomRoom extends StatefulWidget {
-  CustomRoom({Key key}) : super(key: key);
+class ReservedRoom extends StatefulWidget {
+  ReservedRoom({Key key}) : super(key: key);
 
   @override
-  _CustomRoomState createState() => _CustomRoomState();
+  _ReservedRoomState createState() => _ReservedRoomState();
 }
 
-class _CustomRoomState extends State<CustomRoom> {
+class _ReservedRoomState extends State<ReservedRoom> {
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -27,7 +27,7 @@ class _CustomRoomState extends State<CustomRoom> {
 
           children: <Widget>[
             Text('Room Number'),
-            RoomStatus(),
+            Reserved(),
           ],
         ),
       ),

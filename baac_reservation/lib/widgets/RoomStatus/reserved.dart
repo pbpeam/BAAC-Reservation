@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
-class RoomStatus extends StatefulWidget {
-  RoomStatus({Key key}) : super(key: key);
+class Reserved extends StatefulWidget {
+  Reserved({Key key}) : super(key: key);
 
   @override
-  _RoomStatusState createState() => _RoomStatusState();
+  _ReservedState createState() => _ReservedState();
 }
 
-class _RoomStatusState extends State<RoomStatus> {
+class _ReservedState extends State<Reserved> {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.green,
+      color: Colors.red,
 
       child: Container(
       width: 75,
@@ -21,7 +21,7 @@ class _RoomStatusState extends State<RoomStatus> {
           mainAxisAlignment: MainAxisAlignment.center,
           
           children: <Widget>[
-            Text('Ready'),
+            Text('Reserved'),
           ],
         ),
       )

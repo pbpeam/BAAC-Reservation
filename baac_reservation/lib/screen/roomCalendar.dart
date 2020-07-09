@@ -1,4 +1,6 @@
+import 'package:baac_reservation/widgets/reservedRoom.dart';
 import 'package:flutter/material.dart';
+import 'package:baac_reservation/widgets/roomCard.dart';
 
 class RoomCalendar extends StatefulWidget {
   RoomCalendar({Key key}) : super(key: key);
@@ -32,9 +34,21 @@ class _RoomCalendarState extends State<RoomCalendar> {
 
             Expanded(
               child: TabBarView(
+
                 children: [
-                  Text('data1'),
-                  Text('data2'),
+                  ListView.builder(
+                    itemCount: 4,
+                    itemBuilder: (BuildContext context, int index) {  
+                      return RoomCard();
+                    },
+                  ),
+
+                  ListView.builder(
+                    itemCount: 4,
+                    itemBuilder: (BuildContext context, int index) {  
+                      return ReservedRoom();
+                    },
+                  ),
                 ]
               ),
             )
