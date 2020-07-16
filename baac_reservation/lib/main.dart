@@ -1,8 +1,20 @@
+import 'package:baac_reservation/api/user_controller.dart';
+import 'package:baac_reservation/screen/homePage.dart';
+import 'package:baac_reservation/screen/loginPage.dart';
 import 'package:flutter/material.dart';
 
-import 'screen/login.dart';
-
-void main() {
+var initialRoute = '';
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  final isLoggedIn = await UserController.isLoggedIn();
+  
+  // // Sameform
+  // if(isLoggedIn == true){
+  //   initialRoute = '/home';
+  // }else{
+  //   initialRoute = '/login';
+  // }
+  initialRoute = isLoggedIn ? '/home' : '/login';
   runApp(MyApp());
 }
 
@@ -14,7 +26,12 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.green,
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: Login(),
+
+      initialRoute: initialRoute,
+      routes: {
+        '/login': (context) => LoginPage(),
+        '/home': (context) => Home(),
+      },
     );
   }
 }

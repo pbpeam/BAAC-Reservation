@@ -1,5 +1,11 @@
 import 'package:baac_reservation/screen/homePage.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:baac_reservation/api/user_controller.dart';
+
+Future<http.Response> fetchAlbum() {
+  return http.get('https://baac-reserve.herokuapp.com/');
+}
 
 class Login extends StatefulWidget {
   Login({Key key}) : super(key: key);
@@ -11,6 +17,81 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+
+  bool isLoading = false;
+  bool isFormValidated = false;
+  bool isPasswordPreviewEnabled = false;
+
+  // TextField Controllers
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  // fns for computing STATES
+  void computeFormValidated() {
+    setState(() {
+      isFormValidated = emailController.text.length > 0 && passwordController.text.length > 0;
+    });
+  }
+
+  @override
+  void initState() { 
+    super.initState();
+
+    emailController.addListener(computeFormValidated);
+    passwordController.addListener(computeFormValidated);
+  }
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    emailController.dispose();
+    passwordController.dispose();
+
+    super.dispose();
+  }
+
+  
+  void login() async {
+    setState(() {
+      isLoading = true;
+    }
+  );
+    
+    // retrieve data from textfields
+    final String email = emailController.text;
+    final String pwd = passwordController.text;
+
+    // //Show email/pwd
+    // Scaffold.of(context).showSnackBar(
+    //       SnackBar( content: Text(email + "\n" + pwd) )
+    //     );
+        
+    try {
+      final token = await UserController.login(email, pwd);
+      
+      if (token != null) {
+        // remove everything in the stack & go to the home page
+        Navigator.pushNamedAndRemoveUntil(context, '/home', (Route<dynamic> route) => false);
+      }
+      else {
+        // Find the Scaffold in the widget tree and use it to show a SnackBar.
+        Scaffold.of(context).showSnackBar(
+          SnackBar( content: Text("Something went wrong, please try again") )
+        );
+      }
+    } on Exception catch(e) {
+      // Find the Scaffold in the widget tree and use it to show a SnackBar.
+      Scaffold.of(context).showSnackBar(SnackBar( content: Text(e.toString()) ));
+    }
+
+    // return Future.delayed(Duration(milliseconds: 500), () {
+    setState(() {
+      isLoading = false;
+    });
+    // });
+  }
+
+  //UI part
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,6 +117,8 @@ class _LoginState extends State<Login> {
                 width: 325,
                 child: TextField(
                   obscureText: false,
+                  //controller
+                  controller: emailController,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Email'
@@ -51,6 +134,8 @@ class _LoginState extends State<Login> {
                 width: 325,
                 child: TextField(
                   obscureText: true,
+                  //controller
+                  controller: passwordController,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Password'
@@ -66,12 +151,13 @@ class _LoginState extends State<Login> {
                 child: Text('Login'),
                 color: Colors.green,
 
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Home()),
-                  );
-                }
+                // onPressed: () {
+                //   Navigator.push(
+                //     context,
+                //     MaterialPageRoute(builder: (context) => Home()),
+                //   );
+                // }
+                onPressed: isFormValidated ? login : null,
               ),
 
               // buildTextFieldEmail(),

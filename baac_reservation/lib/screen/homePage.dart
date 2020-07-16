@@ -1,5 +1,6 @@
 
 // import 'package:baac_reservation/screen/login.dart';
+import 'package:baac_reservation/api/user_controller.dart';
 import 'package:baac_reservation/screen/calendarPage.dart';
 import 'package:baac_reservation/screen/myReservation.dart';
 import 'package:baac_reservation/widgets/customButton.dart';
@@ -70,7 +71,15 @@ class _HomeState extends State<Home> {
               ),
             ),
 
+            new GestureDetector(
+              onTap: (){
+                UserController.logout(context);
+              },
 
+              child: CustomButton(
+                title: 'Logout'
+              ),
+            ),
 
             
             //  buildButton(),
