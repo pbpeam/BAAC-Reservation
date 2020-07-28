@@ -50,14 +50,14 @@ class _CalendarPageState extends State<CalendarPage> {
 
             //View Room Button
             new GestureDetector(
-              onTap: (){
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => RoomList()),);
-              },
               
               child: CustomButton(
                 title: 'View Room',
               ),
+              
+              onTap: (){
+                Navigator.pushNamed(context,'/rooms');
+              },
             ),
 
             // GestureDetector(

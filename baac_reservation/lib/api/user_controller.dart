@@ -7,7 +7,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class UserController {
   static final String webUrl = 'https://baac-reserve.herokuapp.com';
-  static final String KEY_TOKEN = 'login-token';
+  static final String KEY_TOKEN = 'baac-token';
   static final storage = new FlutterSecureStorage();
 
   static Future<bool> login(String email, String password) async{
@@ -45,8 +45,24 @@ class UserController {
     Navigator.pushNamedAndRemoveUntil(context, '/login', (Route<dynamic> route) => false);
   }
 
+
+  static Future<String> getToken() async{
+    return await storage.read(key: KEY_TOKEN);
+  }
+
   static Future<bool> isLoggedIn() async {
-    final writtenToken = await storage.read(key: KEY_TOKEN);
-    return writtenToken != null;
+    // final writtenToken = await storage.read(key: KEY_TOKEN);
+    // return writtenToken != null;
+    return await getToken() != null;
+  }
+
+  static Future<Map<String, String>> getAuthorizationHeader() async {
+    final token = await getToken();
+    if (token != null)
+      return {
+        'Authorization': "Bearer $token",
+      };
+    else
+      return null;
   }
 }
