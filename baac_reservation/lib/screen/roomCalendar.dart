@@ -1,6 +1,7 @@
+import 'package:baac_reservation/screen/roomList.dart';
 import 'package:baac_reservation/widgets/reservedRoom.dart';
 import 'package:flutter/material.dart';
-import 'package:baac_reservation/widgets/roomCard.dart';
+// import 'package:baac_reservation/widgets/roomCard.dart';
 
 class RoomCalendar extends StatefulWidget {
   RoomCalendar({Key key}) : super(key: key);
@@ -39,7 +40,7 @@ class _RoomCalendarState extends State<RoomCalendar> {
                   ListView.builder(
                     itemCount: 4,
                     itemBuilder: (BuildContext context, int index) {  
-                      return RoomCard();
+                      return RoomList();
                     },
                   ),
 

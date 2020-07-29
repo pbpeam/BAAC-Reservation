@@ -1,3 +1,4 @@
+import 'package:baac_reservation/api/model/rooms.dart';
 import 'package:baac_reservation/api/room_controller.dart';
 import 'package:baac_reservation/widgets/RoomStatus/freeRoom.dart';
 import 'package:flutter/material.dart';
@@ -13,9 +14,15 @@ class RoomList extends StatefulWidget {
 class _RoomListState extends State<RoomList> {
   
   
-  Room fetchedRoom;
+  Room currentRoom;
   bool isLoading = false;
-  // var room = RoomController.fetchRoom();
+  var room = RoomController.fetchRoom();
+
+  @override
+  void initState() {    // when the widget is first created
+    super.initState();
+    fetchCurrentRoom();
+  }
   
   @override
   Widget build(BuildContext context) {
@@ -42,21 +49,21 @@ class _RoomListState extends State<RoomList> {
               // ),
               
               child:
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                Column(
+                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
                   children: <Widget>[
-                    // Text('${fetchedRoom.roomId}'),
-                    // FreeRoom(),
-                    (( fetchedRoom != null ) ?
-                      Column(
+                    (( currentRoom != null ) ?
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
                         children: <Widget>[
-                          Text('${fetchedRoom.roomId}'),
+                          Text('${currentRoom.room}'),
                           FreeRoom(),
                         ],
                       )
                       :
-                      Text('Bug')
+                      Text('null')
                     ),
                   ]
                 )
@@ -70,5 +77,18 @@ class _RoomListState extends State<RoomList> {
       ),
 
     );
+  }
+
+  void fetchCurrentRoom() async {
+    setState(() {
+      isLoading = true;
+    });
+
+    var fetchedRoom = await RoomController.fetchRoom();
+
+    setState(() {
+      isLoading = false;
+      currentRoom = fetchedRoom as Room;
+    });
   }
 }
