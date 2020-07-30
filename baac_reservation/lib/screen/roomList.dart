@@ -14,8 +14,10 @@ class RoomList extends StatefulWidget {
 class _RoomListState extends State<RoomList> {
   
   
-  Room currentRoom;
+  List<Room> currentRoom;
   bool isLoading = false;
+  List<Room> result =[];
+
   var room = RoomController.fetchRoom();
 
   @override
@@ -33,8 +35,9 @@ class _RoomListState extends State<RoomList> {
 
       body: 
         ListView.builder(
-        // itemCount: 4,
-        itemBuilder: (BuildContext context, int index) {  
+        // itemCount: RoomController.result.length,
+        itemBuilder: (BuildContext context, int index) { 
+          
           return Card(
             margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
 
@@ -43,33 +46,32 @@ class _RoomListState extends State<RoomList> {
               margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
               width: 100,
               height: 50,
-
-              // child: Column(
-              //   children: <Widget>[],
-              // ),
               
-              child:
-                Column(
+              child: Column(
                   // mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
-                  children: <Widget>[
-                    (( currentRoom != null ) ?
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  (( currentRoom != null ) ?
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        // Text('${currentRoom[index]}'),
+                        // FreeRoom(),
 
-                        children: <Widget>[
-                          Text('${currentRoom.room}'),
-                          FreeRoom(),
+                        Container(
+                          child: ListView.builder(
+                            itemBuilder: (BuildContext context, int index){
+                              return currentRoom[index];
+                            },
+                          ),
+                        ),
                         ],
-                      )
-                      :
-                      Text('null')
-                    ),
-                  ]
-                )
-
-              
-
+                    )
+                    :
+                    Text('null')
+                  ),
+                ]
+              )
             ),
           );
         },
@@ -79,7 +81,7 @@ class _RoomListState extends State<RoomList> {
     );
   }
 
-  void fetchCurrentRoom() async {
+  void fetchCurrentRoom() async{
     setState(() {
       isLoading = true;
     });
@@ -88,7 +90,7 @@ class _RoomListState extends State<RoomList> {
 
     setState(() {
       isLoading = false;
-      currentRoom = fetchedRoom as Room;
+      currentRoom = fetchedRoom;
     });
   }
 }

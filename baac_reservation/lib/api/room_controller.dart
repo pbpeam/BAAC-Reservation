@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:baac_reservation/screen/roomList.dart';
 import 'package:http/http.dart' as http;
 import 'dart:developer';
 import 'dart:io';
@@ -8,12 +9,15 @@ import 'model/rooms.dart';
 
 class RoomController {
   static const String url = 'https://baac-reserve.herokuapp.com';
-  static var header = UserController.getAuthorizationHeader();
-  
-  static Future<Room> fetchRoom() async{
+  static var header = UserController.getAuthorizationHeader();  
+
+  // static var result = new List();
+  static List<Room> result = [];
+  // RoomList result;
+
+  static Future<List<Room>> fetchRoom() async{
     http.Response res = await http.get(url + '/account/rooms',
     headers: await header,);
-    List<Room> result;
     
     // var body = json.decode(data.body);
     // var room = Room(
@@ -22,18 +26,25 @@ class RoomController {
 
     try{
       log(res.body);
+
       var body  = json.decode(res.body);
+      // var roomId = body['data'];
+      // return Room.fromJSON(body['data'][0]);
 
-      return Room.fromJSON(body['data'][0]);
+      for(var i=0; i<body['data'].length; i++){
+        var jsonRoom = body['data'][i];
+        // result[i] = Room.fromJSON(jsonRoom);
 
-      // for(var i=0; i<['data'].length; i++){
-      //   result = (body['data'][i]);
-      //   return result;
-      // }
+        result.add(Room.fromJSON(jsonRoom));
+
+        // print(result[i]);
+      }
+      
+      return result;
 
     }on FormatException{
       print(res.body);
-    return null;
+      return null;
     }
   }
 }
