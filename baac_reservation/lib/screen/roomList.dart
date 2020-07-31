@@ -16,7 +16,6 @@ class _RoomListState extends State<RoomList> {
   
   List<Room> currentRoom;
   bool isLoading = false;
-  List<Room> result =[];
 
   var room = RoomController.fetchRoom();
 
@@ -34,49 +33,33 @@ class _RoomListState extends State<RoomList> {
       ),
 
       body: 
-        ListView.builder(
-        // itemCount: RoomController.result.length,
-        itemBuilder: (BuildContext context, int index) { 
-          
-          return Card(
-            margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
+        ((currentRoom != null))?
+          ListView.builder(
+            itemCount: currentRoom.length,
+            itemBuilder: (BuildContext context, int index){
+              return Card(
+                margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
 
-            child: Container(
-              
-              margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-              width: 100,
-              height: 50,
-              
-              child: Column(
-                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                child: Container(
+                  margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                  width: 100,
+                  height: 50,
+                  
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
-                children: <Widget>[
-                  (( currentRoom != null ) ?
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        // Text('${currentRoom[index]}'),
-                        // FreeRoom(),
+                    children: <Widget>[
+                      Text('${currentRoom[index].room}'),
 
-                        Container(
-                          child: ListView.builder(
-                            itemBuilder: (BuildContext context, int index){
-                              return currentRoom[index];
-                            },
-                          ),
-                        ),
-                        ],
-                    )
-                    :
-                    Text('null')
+                      FreeRoom(),
+                    ],
                   ),
-                ]
-              )
-            ),
-          );
-        },
-
-      ),
+                ),
+              );
+            }
+          )
+          :
+          Text('null'),
 
     );
   }

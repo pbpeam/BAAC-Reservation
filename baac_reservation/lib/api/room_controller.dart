@@ -12,12 +12,12 @@ class RoomController {
   static var header = UserController.getAuthorizationHeader();  
 
   // static var result = new List();
-  static List<Room> result = [];
   // RoomList result;
 
   static Future<List<Room>> fetchRoom() async{
     http.Response res = await http.get(url + '/account/rooms',
     headers: await header,);
+    List<Room> result = [];
     
     // var body = json.decode(data.body);
     // var room = Room(
