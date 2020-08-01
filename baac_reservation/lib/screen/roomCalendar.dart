@@ -1,4 +1,4 @@
-import 'package:baac_reservation/screen/roomList.dart';
+import 'package:baac_reservation/widgets/roomList.dart';
 import 'package:baac_reservation/widgets/reservedRoom.dart';
 import 'package:flutter/material.dart';
 // import 'package:baac_reservation/widgets/roomCard.dart';
@@ -37,12 +37,13 @@ class _RoomCalendarState extends State<RoomCalendar> {
               child: TabBarView(
 
                 children: [
-                  ListView.builder(
-                    itemCount: 4,
-                    itemBuilder: (BuildContext context, int index) {  
-                      return RoomList();
-                    },
-                  ),
+                  // ListView.builder(
+                  //   itemCount: 4,
+                  //   itemBuilder: (BuildContext context, int index) {  
+                  //     return RoomList();
+                  //   },
+                  // ),
+                  RoomList(),
 
                   ListView.builder(
                     itemCount: 4,

@@ -10,8 +10,12 @@ class RoomDetail extends StatefulWidget {
 class _RoomDetailState extends State<RoomDetail> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      //  child: child,
+    return Scaffold(
+      appBar: AppBar(
+
+      ),
+
+      // body: ,
     );
   }
 }

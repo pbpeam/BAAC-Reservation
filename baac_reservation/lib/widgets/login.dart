@@ -104,10 +104,7 @@ class _LoginState extends State<Login> {
       body: Container(
         // color: Colors.green,
         child: Center(
-
-
           child: Column(
-
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
 

@@ -1,5 +1,6 @@
 import 'package:baac_reservation/api/model/rooms.dart';
 import 'package:baac_reservation/api/room_controller.dart';
+import 'package:baac_reservation/screen/reservationPage.dart';
 import 'package:baac_reservation/widgets/RoomStatus/freeRoom.dart';
 import 'package:flutter/material.dart';
 // import 'package:baac_reservation/widgets/roomCard.dart';
@@ -27,39 +28,41 @@ class _RoomListState extends State<RoomList> {
   
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-
-      ),
-
-      body: 
+    return Container(
+      child: 
         ((currentRoom != null))?
           ListView.builder(
             itemCount: currentRoom.length,
             itemBuilder: (BuildContext context, int index){
-              return Card(
-                margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
+              return GestureDetector(
+                onTap: (){
+                  Navigator.pushNamed(context, '/reserve');
+                },
+                child: Card(
 
-                child: Container(
-                  margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                  width: 100,
-                  height: 50,
-                  
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
 
-                    children: <Widget>[
-                      Text('${currentRoom[index].room}'),
+                  child: Container(
+                    margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                    width: 100,
+                    height: 50,
+                    
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
-                      FreeRoom(),
-                    ],
+                      children: <Widget>[                    
+                        Text('${currentRoom[index].room}'),
+                      // FreeRoom(),
+                      ],
+                    ),
                   ),
-                ),
+                )
+
               );
             }
           )
           :
-          Text('null'),
+          Text('Loading'),
 
     );
   }

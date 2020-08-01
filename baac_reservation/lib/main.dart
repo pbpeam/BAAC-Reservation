@@ -1,7 +1,8 @@
 import 'package:baac_reservation/api/user_controller.dart';
 import 'package:baac_reservation/screen/homePage.dart';
 import 'package:baac_reservation/screen/loginPage.dart';
-import 'package:baac_reservation/screen/roomList.dart';
+import 'package:baac_reservation/screen/reservationPage.dart';
+import 'package:baac_reservation/screen/roomPage.dart';
 import 'package:flutter/material.dart';
 
 var initialRoute = '';
@@ -26,7 +27,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/login': (context) => LoginPage(),
         '/home': (context) => Home(),
-        '/rooms': (context) => RoomList(),
+        '/rooms': (context) => RoomPage(),
+        '/reserve': (context) => ReservationPage(),
       },
     );
   }

@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:baac_reservation/screen/roomList.dart';
+import 'package:baac_reservation/widgets/roomList.dart';
 import 'package:http/http.dart' as http;
 import 'dart:developer';
 import 'dart:io';
@@ -46,6 +46,10 @@ class RoomController {
       print(res.body);
       return null;
     }
+  }
+
+  static Future<String> reserve() async{
+    http.Response res = await http.post(webUrl + '/')
   }
 }
 
