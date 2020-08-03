@@ -36,6 +36,7 @@ class _RoomListState extends State<RoomList> {
             itemBuilder: (BuildContext context, int index){
               return GestureDetector(
                 onTap: (){
+                  
                   Navigator.pushNamed(context, '/reserve');
                 },
                 child: Card(

@@ -12,6 +12,7 @@ class _RoomPageState extends State<RoomPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // resizeToAvoidBottomPadding: false,
        appBar: AppBar(
 
        ),

@@ -76,7 +76,7 @@ class _LoginState extends State<Login> {
       else {
         // Find the Scaffold in the widget tree and use it to show a SnackBar.
         Scaffold.of(context).showSnackBar(
-          SnackBar( content: Text("Something went wrong, please try again") )
+          SnackBar( content: Text("Please try again") )
         );
       }
     } on Exception catch(e) {

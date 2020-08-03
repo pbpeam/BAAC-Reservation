@@ -14,11 +14,9 @@ class CalendarPage extends StatefulWidget {
 
 class _CalendarPageState extends State<CalendarPage> {
   CalendarController _calendarController;
-  DateTime _dateTime;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _calendarController = CalendarController();
   }
