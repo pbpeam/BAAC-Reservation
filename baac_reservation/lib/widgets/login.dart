@@ -1,4 +1,4 @@
-import 'package:baac_reservation/screen/homePage.dart';
+// import 'package:baac_reservation/screen/homePage.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:baac_reservation/api/user_controller.dart';
@@ -70,25 +70,20 @@ class _LoginState extends State<Login> {
       final token = await UserController.login(email, pwd);
       
       if (token != null) {
-        // remove everything in the stack & go to the home page
         Navigator.pushNamedAndRemoveUntil(context, '/home', (Route<dynamic> route) => false);
       }
       else {
-        // Find the Scaffold in the widget tree and use it to show a SnackBar.
         Scaffold.of(context).showSnackBar(
           SnackBar( content: Text("Please try again") )
         );
       }
     } on Exception catch(e) {
-      // Find the Scaffold in the widget tree and use it to show a SnackBar.
       Scaffold.of(context).showSnackBar(SnackBar( content: Text(e.toString()) ));
     }
 
-    // return Future.delayed(Duration(milliseconds: 500), () {
     setState(() {
       isLoading = false;
     });
-    // });
   }
 
   //UI part
@@ -138,11 +133,7 @@ class _LoginState extends State<Login> {
                     labelText: 'Password'
                   ),
                 ),
-              ),  
-
-              // Container(
-              //   height: 10,
-              // ),            
+              ),              
               
               RaisedButton(
                 child: Text('Login'),
@@ -157,10 +148,6 @@ class _LoginState extends State<Login> {
                 onPressed: isFormValidated ? login : null,
               ),
 
-              // buildTextFieldEmail(),
-              // buildTextFieldPassword(),
-              // buildSignInButton(),
-
             ],
 
           ),
@@ -171,59 +158,3 @@ class _LoginState extends State<Login> {
 }
 
 
-//Email field
-Container buildTextFieldEmail(){
-  return Container(
-    padding: EdgeInsets.all(12),
-    margin: EdgeInsets.only(top: 12),
-
-    decoration: BoxDecoration(
-       color: Colors.yellow[50], borderRadius: BorderRadius.circular(16)
-    ),
-
-    child: TextField(
-      obscureText: true,
-      decoration: InputDecoration.collapsed(hintText: "Email"),
-      style: TextStyle(fontSize: 18)
-    ),
-
-  );
-}
-
-//PW field
-Container buildTextFieldPassword(){
-  return Container(
-    padding: EdgeInsets.all(12),
-    margin: EdgeInsets.only(top: 12),
-
-    decoration: BoxDecoration(
-      color: Colors.yellow[50], borderRadius: BorderRadius.circular(16)
-    ),
-
-    child: TextField(
-      obscureText: true,
-      decoration: InputDecoration.collapsed(hintText: "Password"),
-      style: TextStyle(fontSize: 18)
-    )
-  );
-}
-
-//sign in button
-Container buildSignInButton(){
-  return Container(
-    constraints: BoxConstraints.expand(height: 50),
-    child: Text("Sign in",
-        textAlign: TextAlign.center,
-        style: TextStyle(fontSize: 18, color: Colors.white)
-        
-    ),
-
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(16), color: Colors.green[200]
-    ),
-
-    margin: EdgeInsets.only(top: 16),
-    padding: EdgeInsets.all(12),
-
-  );
-}

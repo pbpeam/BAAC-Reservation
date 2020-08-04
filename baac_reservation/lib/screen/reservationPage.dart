@@ -1,5 +1,5 @@
 import 'package:baac_reservation/api/room_controller.dart';
-import 'package:baac_reservation/widgets/customButton.dart';
+// import 'package:baac_reservation/widgets/customButton.dart';
 import 'package:flutter/material.dart';
 // import 'package:date_format/date_format.dart';
 
@@ -12,7 +12,7 @@ class _ReservationPageState extends State<ReservationPage> {
   final roomID = TextEditingController();
   final topic = TextEditingController();
   final chairman = TextEditingController();
-  final date = TextEditingController();
+  var meetingDate = TextEditingController();
   final timeStart = TextEditingController();
   final timeEnd = TextEditingController();
   final participants = TextEditingController();
@@ -27,7 +27,7 @@ class _ReservationPageState extends State<ReservationPage> {
       roomID.text.length > 0 &&
       topic.text.length > 0 && 
       chairman.text.length > 0 && 
-      date.text.length > 0 && 
+      meetingDate.text.length > 0 && 
       timeStart.text.length > 0 && 
       timeEnd.text.length > 0 && 
       participants.text.length > 0;
@@ -41,7 +41,7 @@ class _ReservationPageState extends State<ReservationPage> {
     roomID.addListener(computeFormValidated);
     topic.addListener(computeFormValidated);
     chairman.addListener(computeFormValidated);
-    date.addListener(computeFormValidated);
+    meetingDate.addListener(computeFormValidated);
     timeStart.addListener(computeFormValidated);
     timeEnd.addListener(computeFormValidated);
     roomID.addListener(computeFormValidated);
@@ -100,36 +100,37 @@ class _ReservationPageState extends State<ReservationPage> {
                   ),
                 ),
 
-                Text('Date'), //Date format yyyy/MM/dd
+                Text('Date'),
                 Container(
                   width: 400,
                   height: 40,
                   child: TextField(
                     obscureText: false,
-                    controller: date,
+                    controller: meetingDate,
                     decoration: InputDecoration(
                       hintText: 'yyyy/MM/dd',
                       border: OutlineInputBorder(),
                     ),
                   ),
-                ),
-          //       RaisedButton( 
-          //   child: Text('Select Date'),
-          //   onPressed: () async {
-          //     showDatePicker(
-          //       context: context, 
-          //       initialDate: dateTime, 
-          //       firstDate: DateTime(2020), 
-          //       lastDate: DateTime(2222)
-          //     )
-          //     .then ((date) {
-          //       setState(() {
-          //         dateTime = date;
-          //       });
-          //     });
+                // ),
+                // RaisedButton( 
+                //   child: Text('Select Date'),
+                //   onPressed: () {
+                //     showDatePicker(
+                //       context: context, 
+                //       initialDate: dateTime, 
+                //       firstDate: DateTime(2020), 
+                //       lastDate: DateTime(2222)
+                //     )
+                //     .then ((date) {
+                //       setState(() {
+                //         dateTime = date;
+                //         meetingDate.text = dateTime as String;
+                //       });
+                //     });
 
-          //   },
-          // ),
+                //   },
+                ),
 
                 Text('Time start'),
                 Container(
@@ -155,19 +156,6 @@ class _ReservationPageState extends State<ReservationPage> {
                     ),
                   ),
                 ),
-
-                // Text('Time (morning/ afternoon)'),
-                // Container(
-                //   width: 400,
-                //   height: 40,
-                //   child: TextField(
-                //     obscureText: false,
-                //     controller: participants,
-                //     decoration: InputDecoration(
-                //       border: OutlineInputBorder(),
-                //     ),
-                //   ),
-                // ),
 
                 Text('Participant'),
                 Container(
@@ -214,13 +202,14 @@ class _ReservationPageState extends State<ReservationPage> {
             new FlatButton(
               child: new Text('Confirm'),
               onPressed: () {
-                Navigator.of(context).pop();   
+                Navigator.of(context).pop();
+                // Navigator.pushNamed(context,'/rooms');  
                 isFormValidated ?
                       RoomController.reservation(
                           roomID.text,
                           topic.text,
                           chairman.text,
-                          date.text,
+                          meetingDate.text,
                           timeStart.text,
                           timeEnd.text,
                           participants.text,
